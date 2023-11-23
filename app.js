@@ -22,11 +22,14 @@ const displyCategories = (data) => {
   // console.log(data);
   const allCategory = document.getElementById("allCategory");
   allCategory.innerHTML = "";
-  data.forEach((category,index) => {
+  data.forEach((category, index) => {
     // console.log(category);
     const div = document.createElement("div");
     div.innerHTML = `
-    <button id="${category.category_id}" onclick="handleCategoryClick(${index}, ${category.category_id})" class="btn ${index === 0 ? 'bg-[#ff1f3d] text-white' : ''}">${category?.category}</button>    `;
+    <button id="${category.category_id
+      }" onclick="handleCategoryClick(${index}, ${category.category_id
+      })" class="btn ${index === 0 ? "bg-[#ff1f3d] text-white" : ""}">${category?.category
+      }</button>    `;
     allCategory.appendChild(div);
   });
 };
@@ -97,14 +100,14 @@ const displyVideos = (data) => {
                 <h3 class="text-neutral-950 max-w-prose line-clamp-2 font-bold text-base ">${video.title
         }</h3>
                 <div class="flex gap-2  mt-2 mb-2 items-center">
-                    <p class="text-sm text-heroText">${video?.authors[0].profile_name
+                    <p class="text-sm  text-[#171717]">${video?.authors[0].profile_name
         }</p>
                     ${video?.authors[0].verified
           ? '<img src="/Image/verified.svg" alt="" />'
           : ""
         }
                 </div>
-                <p class="text-sm mt-2 text-heroText">${video?.others?.views
+                <p class="text-sm mt-2 text-[#171717]">${video?.others?.views
         } views</p>
             </div>
             </div>
@@ -121,10 +124,16 @@ const handleSort = () => {
 
   if (!isAscending) {
     sortContainer.setAttribute("data-tip", "Highest to Lowest");
-    videos.sort((a, b) => (parseInt(b.others.views) || 0) - (parseInt(a.others.views) || 0));
+    videos.sort(
+      (a, b) =>
+        (parseInt(b.others.views) || 0) - (parseInt(a.others.views) || 0)
+    );
   } else {
     sortContainer.setAttribute("data-tip", "Lowest to Highest");
-    videos.sort((a, b) => (parseInt(a.others.views) || 0) - (parseInt(b.others.views) || 0));
+    videos.sort(
+      (a, b) =>
+        (parseInt(a.others.views) || 0) - (parseInt(b.others.views) || 0)
+    );
   }
   displyVideos(videos);
 };

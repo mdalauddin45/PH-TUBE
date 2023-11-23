@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html data-theme="light" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PH TUBE</title>
-    <link rel="shortcut icon" href="/Image/Logo.png"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.4/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PH TUBE</title>
+  <link rel="shortcut icon" href="/Image/Logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.4/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
-    <!-- header section start  -->
-    <header class="container mx-auto border-b-2 items-center w-[92%] flex py-5 justify-between text-white">
-        <div class="flex items-center">
-          <img class="w-full h-[32px] sm:h-full object-contain" src="/Image/Logo.png" alt="logo image"/>
-        </div>
-        <div id="sort-container" class="tooltip tooltip-bottom" data-tip="Highest to Lowest" >
-            <button class="btn" onclick="handleSort()" id="sort-by">Sort by view</button>
-        </div>
-        <div class="menu menu-horizontal text-sm xl:px-1 xl:text-lg font-medium">
-            <button class="bg-[#ff1f3d] hover:bg-[#ff1f3d] py-3 rounded rounded-lg">
-                <a class='text-xs sm:text-base px-2 sm:px-5 font-medium text-white ' href='/blog'>BLOG</a>
-            </button>
-        </div>
-      </header>
-      <!-- header section end -->
-      <!-- main section start  -->
-      <main class="container mx-auto w-[92%] my-4 md:my-6 lg:w-full text-neutral-950">
-        <section>
-            <ul id="allCategory" class="menu menu-horizontal text-white flex gap-1 sm:gap-5 justify-center items-center xl:px-1 text-sm font-medium">
-    
-            </ul>
-          </section>
-          <section class="mt-6 md:mt-8">
-            <div id="spinner" class="my-48 w-56 mx-auto">
-                  <span class="loading loading-infinity loading-lg"></span>
-            </div>
-            <div id="empty"></div>
-            <div id="allVideos" class="cursor-pointer grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-5 mt-12">
-                
-            </div>
-          </section>
-      </main>
-      <!-- main section end -->
-      <script src="/app.js"></script>
+  <!-- header section start  -->
+  <header class="container mx-auto border-b-2 items-center w-[92%] flex py-5 justify-between text-white">
+    <div class="flex items-center">
+      <img class="w-full h-[32px] sm:h-full object-contain" src="/Image/Logo.png" alt="logo image" />
+    </div>
+    <div id="sort-container" class="tooltip tooltip-bottom" data-tip="Highest to Lowest">
+      <button class="btn" onclick="handleSort()" id="sort-by">Sort by view</button>
+    </div>
+    <div class="menu menu-horizontal text-sm xl:px-1 xl:text-lg font-medium">
+      <button class="bg-[#ff1f3d] hover:bg-[#ff1f3d] py-3 rounded rounded-lg">
+        <a class='text-xs sm:text-base px-2 sm:px-5 font-medium text-white ' href='/blog'>BLOG</a>
+      </button>
+    </div>
+  </header>
+  <!-- header section end -->
+  <!-- main section start  -->
+  <main class="container mx-auto w-[92%] my-4 md:my-6 lg:w-full text-neutral-950">
+    <section>
+      <ul id="allCategory"
+        class="menu menu-horizontal text-white  flex gap-1 sm:gap-5 justify-center items-center xl:px-1 text-sm font-medium">
+
+      </ul>
+    </section>
+    <section class="mt-6 md:mt-8">
+      <div id="spinner" class="my-48 w-56 mx-auto">
+        <span class="loading loading-infinity loading-lg"></span>
+      </div>
+      <div id="empty"></div>
+      <div id="allVideos"
+        class="cursor-pointer grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-5 mt-12">
+
+      </div>
+    </section>
+  </main>
+  <!-- main section end -->
+  <script src="/app.js"></script>
 </body>
+
 </html>
