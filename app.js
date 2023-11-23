@@ -1,5 +1,4 @@
-let videos = [];
-let categories = [];
+let currentVideos = [];
 let isAscending = false;
 function formatTime(seconds) {
   return seconds < 60
@@ -14,21 +13,6 @@ function formatTime(seconds) {
         Math.floor((seconds % 3600) / 60) === 1 ? "minute" : "minutes"
       } ago`;
 }
-function sortViews(data, options) {
-    const sortedData = data.sort((a, b) => {
-      const aViews = parseInt(a.others.views);
-      const bViews = parseInt(b.others.views);
-      if (options) {
-        console.log(options);
-        return bViews - aViews;
-      } else {
-        console.log(options);
-        return aViews - bViews;
-      }
-    });
-    return sortedData;
-}
-  
 const loadCategories = () => {
   fetch(`https://openapi.programming-hero.com/api/videos/categories`)
     .then((res) => res.json())
@@ -51,24 +35,19 @@ const displyCategories = (data) => {
 loadCategories();
 
 const loadVideos = (id) => {
+    const spinner = document.getElementById("spinner");
+    spinner.style.display = "block";
     fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
     .then((res) => res.json())
-    .then((data) => displyVideos(data.data));
-};
-const showEmpty = () => {
-  const videoContainer = document.getElementById("video-container");
-  videoContainer.innerHTML = "";
-  const emptyContainer = document.getElementById("empty");
-  const div = document.createElement("div");
-  div.innerHTML = `  <div class="flex flex-col mt-20 items-center justify-center">
-  <img src="/image/Icon.png" class="h-[140px] w-[140px]" alt="" />
-  <h2
-    class="mt-8 text-3xl text-center font-bold md:w-[400px] w-[80%] mx-auto"
-  >
-    Oops!! Sorry, There is no content here
-  </h2>
-</div>`;
-  emptyContainer.appendChild(div);
+    .then((data) => {
+        displyVideos(data.data);
+        spinner.style.display = "none";
+        currentVideos = data.data;
+    })
+    .catch((error) => {
+        console.error("Error loading videos:", error);
+        spinner.style.display = "none"; 
+      });
 };
 const displyVideos = (data) => {
     const allVideos = document.getElementById("allVideos");
@@ -78,9 +57,9 @@ const displyVideos = (data) => {
         allVideos.innerHTML = "";
         empty.innerHTML = `
         <div class="flex flex-col mt-20 items-center justify-center">
-        <img src="/image/Icon.png" class="h-[140px] w-[140px]" alt="" />
-        <h2 class="mt-8 text-3xl text-center font-bold md:w-[400px] w-[80%] mx-auto"> Oops!! Sorry, There is no content here</h2>
-      </div>
+            <img src="/image/Icon.png" class="h-[140px] w-[140px]" alt="" />
+            <h2 class="mt-8 text-3xl text-center font-bold md:w-[400px] w-[80%] mx-auto"> Oops!! Sorry, There is no content here</h2>
+        </div>
         `;
     }else if(data.length>1){
         empty.innerHTML = "";
@@ -134,5 +113,21 @@ const displyVideos = (data) => {
         });
     }
 };
+const sortVideosByViews = () => {
+    console.log("click")
+    isAscending = !isAscending;
+    if (!isAscending) document.getElementById("sortContainer").setAttribute("data-tip", "Highest to Lowest");
+    else document.getElementById("sortContainer").setAttribute("data-tip", "Lowest to Highest");
+    const sortedData = [...currentVideos];
+    
+    if (!isAscending) {
+        sortedData.sort((a, b) => (a.others?.views || 0) - (b.others?.views || 0));
+    } else {
+        sortedData.sort((a, b) => (b.others?.views || 0) - (a.others?.views || 0));
+    }
+
+    displyVideos(sortedData);
+};
+
 loadVideos(1000)
 loadCategories();
