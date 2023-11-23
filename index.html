@@ -16,8 +16,8 @@
         <div class="flex items-center">
           <img class="w-full h-[32px] sm:h-full object-contain" src="/Image/Logo.png" alt="logo image"/>
         </div>
-        <div  id="sortContainer" onclick="sortVideosByViews()" class="tooltip tooltip-bottom" data-tip="Highest to Lowest" >
-            <button class="btn">Sort by view</button>
+        <div id="sort-container" class="tooltip tooltip-bottom" data-tip="Highest to Lowest" >
+            <button class="btn" onclick="handleSort()" id="sort-by">Sort by view</button>
         </div>
         <div class="menu menu-horizontal text-sm xl:px-1 xl:text-lg font-medium">
             <button class="btn btn-error">
@@ -34,9 +34,9 @@
             </ul>
           </section>
           <section class="mt-6 md:mt-8">
-              <div id="spinner" class="my-48 w-56 mx-auto">
+            <div id="spinner" class="my-48 w-56 mx-auto">
                   <span class="loading loading-infinity loading-lg"></span>
-              </div>
+            </div>
             <div id="empty"></div>
             <div id="allVideos" class="cursor-pointer grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-5 mt-12">
                 

@@ -1,4 +1,5 @@
-let currentVideos = [];
+let videos = [];
+let categories = [];
 let isAscending = false;
 function formatTime(seconds) {
   return seconds < 60
@@ -16,7 +17,10 @@ function formatTime(seconds) {
 const loadCategories = () => {
   fetch(`https://openapi.programming-hero.com/api/videos/categories`)
     .then((res) => res.json())
-    .then((data) => displyCategories(data?.data));
+    .then((data) => {
+        displyCategories(data?.data);
+        currentCategory = data.data;
+    });
 };
 const displyCategories = (data) => {
   // console.log(data);
@@ -31,8 +35,20 @@ const displyCategories = (data) => {
     allCategory.appendChild(div);
   });
 };
+const handleSort = () => {
+  isAscending = !isAscending;
+  const sortContainer = document.getElementById("sort-container");
 
-loadCategories();
+  if (!isAscending) {
+      sortContainer.setAttribute("data-tip", "Highest to Lowest");
+      videos.sort((a, b) => (parseInt(b.others.views) || 0) - (parseInt(a.others.views) || 0));
+  } else {
+      sortContainer.setAttribute("data-tip", "Lowest to Highest");
+      videos.sort((a, b) => (parseInt(a.others.views) || 0) - (parseInt(b.others.views) || 0));
+  }
+  displyVideos(videos);
+};
+
 
 const loadVideos = (id) => {
     const spinner = document.getElementById("spinner");
@@ -42,25 +58,30 @@ const loadVideos = (id) => {
     .then((data) => {
         displyVideos(data.data);
         spinner.style.display = "none";
-        currentVideos = data.data;
+        videos = data.data;
     })
     .catch((error) => {
         console.error("Error loading videos:", error);
         spinner.style.display = "none"; 
       });
 };
-const displyVideos = (data) => {
+
+const showEmpty=()=>{
     const allVideos = document.getElementById("allVideos");
     const empty = document.getElementById("empty");
-    if(data.length==0){
-        
-        allVideos.innerHTML = "";
+    allVideos.innerHTML = "";
         empty.innerHTML = `
         <div class="flex flex-col mt-20 items-center justify-center">
             <img src="/image/Icon.png" class="h-[140px] w-[140px]" alt="" />
             <h2 class="mt-8 text-3xl text-center font-bold md:w-[400px] w-[80%] mx-auto"> Oops!! Sorry, There is no content here</h2>
         </div>
         `;
+}
+const displyVideos = (data) => {
+    const allVideos = document.getElementById("allVideos");
+    const empty = document.getElementById("empty");
+    if(data.length==0){
+        showEmpty();
     }else if(data.length>1){
         empty.innerHTML = "";
         allVideos.innerHTML = "";
@@ -113,21 +134,5 @@ const displyVideos = (data) => {
         });
     }
 };
-const sortVideosByViews = () => {
-    console.log("click")
-    isAscending = !isAscending;
-    if (!isAscending) document.getElementById("sortContainer").setAttribute("data-tip", "Highest to Lowest");
-    else document.getElementById("sortContainer").setAttribute("data-tip", "Lowest to Highest");
-    const sortedData = [...currentVideos];
-    
-    if (!isAscending) {
-        sortedData.sort((a, b) => (a.others?.views || 0) - (b.others?.views || 0));
-    } else {
-        sortedData.sort((a, b) => (b.others?.views || 0) - (a.others?.views || 0));
-    }
-
-    displyVideos(sortedData);
-};
-
-loadVideos(1000)
+loadVideos(1000);
 loadCategories();
