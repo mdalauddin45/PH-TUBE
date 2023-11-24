@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHTUBE-BLOG</title>
     <link rel="shortcut icon" href="/Image/Logo.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.4/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  
+</head>
+
 
 <body class="bg-[#111121] min-h-screen bg-[url('https://devconfbd.com/images/star-bg.svg')]">
     <div class="max-w-[800px] select-none marker:text-[#4BA2D3] text-white mx-auto pt-32">
@@ -23,47 +23,59 @@
                 <p class="text-base font-bold text-[#c51b46]">VAR :</p>
                 <ul class="text-sm list-disc ml-4 my-4">
                     <li>
-                        <span class="font-bold text-[#4BA2D3]">Function Scope : </span>
-                        Variables declared with var are function-scoped. They are only
-                        accessible within the function where they are defined.
+                        <span class="font-bold text-[#4BA2D3]">Scope : </span>
+                        var has function-level scope. It means that a variable declared with var is visible throughout
+                        the function in which
+                        it is declared.
                     </li>
                     <li>
                         <span class="font-bold text-[#4BA2D3]">Hoisting : </span>
-                        Variables declared with var are hoisted to the top of their
-                        containing function or global scope, meaning you can use them
-                        before they are declared, but they will be initialized with
-                        undefined until their actual declaration.
+                        Variables declared with var are hoisted to the top of their function or global scope. However,
+                        only the declaration
+                        is hoisted, not the initialization.
+                    </li>
+                    <li>
+                        <span class="font-bold text-[#4BA2D3]">Reassignment : </span> var allows for redeclaration and
+                        reassignment of
+                        variables.
                     </li>
                 </ul>
                 <p class="text-base font-bold text-[#c51b46]">LET :</p>
                 <ul class="text-sm list-disc ml-4 my-4">
                     <li>
                         <span class="font-bold text-[#4BA2D3]">Block Scope : </span>
-                        Variables declared with let are block-scoped, meaning they are
-                        accessible only within the block where they are defined. A block
-                        can be a function, loop, or any code enclosed in curly braces {}.
+                        let has block-level scope. It means that a variable declared with let is only accessible within
+                        the block it is
+                        declared in (if, for, while, etc.).
                     </li>
                     <li>
                         <span class="font-bold text-[#4BA2D3]"> Hoisting : </span>
-                        Variables declared with let are also hoisted to the top of their
-                        containing block, but they are not initialized, so you can't use
-                        them before their declaration.
+                        Variables declared with let are hoisted to the top of their block but are not initialized.
+                        Accessing the
+                        variable before its declaration results in a ReferenceError.
+
+                    </li>
+                    <li>
+                        <span class="font-bold text-[#4BA2D3]"> Reassignment : </span>
+                        let allows reassignment but not redeclaration of the same variable within the same block scope.
                     </li>
                 </ul>
                 <p class="text-base font-bold text-[#c51b46]">CONST :</p>
-
                 <ul class="text-sm list-disc ml-4 my-4">
                     <li>
                         <span class="font-bold text-[#4BA2D3]"> Block Scope : </span>
-                        Like let, const is also block-scoped.
+                        const also has block-level scope.
                     </li>
                     <li>
-                        <span class="font-bold text-[#4BA2D3]"> Immutability : </span>
-                        Variables declared with const are meant to be constants, and their
-                        value cannot be reassigned after initialization. However, for
-                        objects and arrays declared with const, you can still modify their
-                        properties or elements; you just can't reassign the variable
-                        itself.
+                        <span class="font-bold text-[#4BA2D3]"> Hoisting : </span>
+                        Like let, variables declared with const are hoisted to the top of their block but are not initialized. Accessing
+                        the variable before its declaration results in a ReferenceError.
+                    </li>
+                    <li>
+                        <span class="font-bold text-[#4BA2D3]"> Reassignment : </span>
+                        Variables declared with const must be initialized during declaration and cannot be reassigned. However, for
+                        objects and arrays, while the reference cannot be changed, the internal properties or elements of the
+                        object/array can be modified.
                     </li>
                 </ul>
             </div>
@@ -77,46 +89,56 @@
                 <p class="text-base font-bold text-[#c51b46]">null :</p>
                 <ul class="text-sm list-disc ml-4 my-4">
                     <li>
-                        <span class="font-bold text-[#4BA2D3]">Explicit Absence of Value :</span>
-                        null is a value that represents the intentional absence of any
-                        object value or value in general. It is typically used when you
-                        want to indicate that a variable or property should have no value
-                        or that it has been intentionally cleared.
+                        <span class="font-bold text-[#4BA2D3]">Intentional absence of value :</span>
+                        It is a deliberate assignment to a variable or an object property to signify that it has no value or is
+                        explicitly empty.
+        
+        
                     </li>
                     <li>
-                        <span class="font-bold text-[#4BA2D3]">As a Placeholder :</span>
-                        It can also be used as a placeholder or initial value that might
-                        be assigned a value later in your code.
-                    </li>
-                    <li>
-                        <span class="font-bold text-[#4BA2D3]">Returned by Functions :</span>
-                        Some functions or methods may return null to indicate that they
-                        did not find a meaningful result.
+                        <span class="font-bold text-[#4BA2D3]">Use cases :</span>
+                        <ul class="text-sm list-disc ml-4 my-4">
+                            <li>
+                                <span class="font-bold text-[#4BA2D3]">Explicitly clearing values :</span>
+                                Sometimes used to explicitly reset or clear a variable or an object property.
+                            </li>
+                            <li>
+                                <span class="font-bold text-[#4BA2D3]">As a placeholder :</span>
+                                Can be used as a placeholder until a value is assigned.
+                            </li>
+                            <li>
+                                <span class="font-bold text-[#4BA2D3]">Checking for uninitialized values :</span>
+                                It can be used to check if a value has been intentionally left blank or not assigned.
+                            </li>
+                        </ul>
                     </li>
                 </ul>
                 <p class="text-base font-bold text-[#c51b46]">undefined :</p>
                 <ul class="text-sm list-disc ml-4 my-4">
                     <li>
-                        <span class="font-bold text-[#4BA2D3]">Default Value :</span>
-                        In JavaScript, variables that have been declared but have not been
-                        assigned a value are automatically initialized with undefined. So,
-                        undefined is often used as the default value for function
-                        parameters and variables.
+                        <span class="font-bold text-[#4BA2D3]">Intentional absence of value :</span>
+                        It typically indicates an uninitialized variable or a property that has not been assigned a value
+                        explicitly.
+        
                     </li>
                     <li>
-                        <span class="font-bold text-[#4BA2D3]">Property Access :</span>
-                        If you try to access an object property that does not exist, you
-                        will get undefined.
-                    </li>
-                    <li>
-                        <span class="font-bold text-[#4BA2D3]">Array Elements :</span>
-                        When you access an array element that is beyond the current length
-                        of the array, you get undefined.
-                    </li>
-                    <li>
-                        <span class="font-bold text-[#4BA2D3]">Function Return :</span>
-                        If a function does not explicitly return a value, it returns
-                        undefined.
+                        <span class="font-bold text-[#4BA2D3]">Use cases :</span>
+                        <ul class="text-sm list-disc ml-4 my-4">
+                            <li>
+                                <span class="font-bold text-[#4BA2D3]">Variable declaration without initialization :</span>
+                                When a variable is declared but not assigned any value, it automatically gets the value
+                                undefined.
+                            </li>
+                            <li>
+                                <span class="font-bold text-[#4BA2D3]">Missing function arguments :</span>
+                                If a function is called with fewer arguments than declared parameters, the remaining parameters
+                                will have an undefined value.
+                            </li>
+                            <li>
+                                <span class="font-bold text-[#4BA2D3]">Property of an object that has not been set :</span>
+                                When trying to access an object property that doesn't exist, it returns undefined.
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -129,14 +151,10 @@
             <div class="collapse-content">
                 <p class="text-base font-bold text-[#c51b46] mb-4">REST API :</p>
                 <p>
-                    A <span class="font-bold text-[#4BA2D3]"> REST API </span> is an
-                    application programming interface that adheres to the constraints of
-                    REST architectural style and enables interaction with RESTful web
-                    services. Interconnected networks make up the web. A web service is
-                    a set of open protocols and standards used for exchanging data
-                    between client-server applications. Web services that follow the
-                    REST architecture are known as RESTful web services.
-                </p>
+                    An <span class="font-bold text-[#4BA2D3]"> API, </span> or application programming interface, is a set of
+                    rules that define how applications or devices can connect to and communicate with each other. A REST API is
+                    an API that conforms to the design principles of the REST, or representational state transfer architectural
+                    style. For this reason, REST APIs are sometimes referred to RESTful APIs. </p>
             </div>
         </div>
         <div class="flex mt-4 justify-center">
